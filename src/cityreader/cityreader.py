@@ -1,8 +1,14 @@
 # Create a class to hold a city location. Call the class "City". It should have
 # fields for name, lat and lon (representing latitude and longitude).
-
-
 import csv
+
+# https://stackoverflow.com/questions/22282760/filenotfounderror-errno-2-no-such-file-or-directory
+# import os
+
+# cwd = os.getcwd()  # Get the current working directory (cwd)
+# files = os.listdir(cwd)  # Get all the files in that directory
+# print("Files in %r: %s" % (cwd, files))
+# test_stretch.py', 'cityreader.py', 'cities.csv', 'test_cityreader.py'
 
 
 class City:
@@ -47,12 +53,10 @@ def cityreader(cities=[]):
         csv_reader = csv.reader(csvfile, delimiter=',')
         next(csv_reader)
         for row in csv_reader:
-            name = row[0]
-            lat = float(row[3])
-            lon = float(row[4])
-            cities.append(name, lat, lon)
-            # For each city record, create a new City instance and add it to the
-            # `cities` list
+            for row in csv_reader:
+                cities.append(City(row[0], float(row[3]), float(row[4])))
+           # For each city record, create a new City instance and add it to the
+           # `cities` list
     return cities
 
 
